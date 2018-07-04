@@ -1,0 +1,20 @@
+sudo: required
+
+services:
+  - docker
+
+branches:
+  only:
+    - master
+
+before_script:
+  - docker login -u=${DOCKER_USER} -p=${DOCKER_PASS}
+
+script:
+  - docker build -t base .
+  - docker tag base gypsydiver/go-nodejs:${TRAVIS_BRANCH}
+  - docker tag base gypsydiver/go-nodejs:${TRAVIS_BUILD_ID}
+  - docker tag base gypsydiver/go-nodejs
+  - docker push gypsydiver/go-nodejs:${TRAVIS_BRANCH}
+  - docker push gypsydiver/go-nodejs:${TRAVIS_BUILD_ID}
+  - docker push gypsydiver/go-nodejs
