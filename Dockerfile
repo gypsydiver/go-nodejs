@@ -1,4 +1,4 @@
-FROM golang:1.10.3-alpine
+FROM golang:alpine
 MAINTAINER Fernando Mendoza <fermendozarcs@gmail.com>
 
 RUN apk add -U bash curl git make glide nodejs libc-dev \
